@@ -2,7 +2,13 @@
 <configuration debug="false" scan="true" scanPeriod="1 seconds">
 
     <contextName>logback</contextName>
-    <property name="log.path" value="/data/applogs/xxl-job/xxl-job-executor-sample-springboot.log"/>
+
+    <!--读取spring配置文件上的属性-->
+    <springProperty scope="context" name="app.name" source="spring.application.name"/>
+    <!-- 声明变量，指定日志文件的根路径 -->
+    <property name="log.path" value="data/applogs/${app.name}/" />
+
+<!--    <property name="log.path" value="data/applogs/xxl-job/xxl-job-executor-sample-springboot.log"/>-->
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
